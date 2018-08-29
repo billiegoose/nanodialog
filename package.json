@@ -1,0 +1,20 @@
+{
+  "name": "nanodialog",
+  "version": "0.0.0",
+  "description": "Lightweight HTML5 customizable modal prompts with no dependencies.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wmhilton/nanodialog.git"
+  },
+  "keywords": [],
+  "author": "William Hilton <wmhilton@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wmhilton/nanodialog/issues"
+  },
+  "homepage": "https://github.com/wmhilton/nanodialog#readme"
+}
