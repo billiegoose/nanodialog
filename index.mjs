@@ -12,7 +12,12 @@ function createDialog(innerHTML, onClose, onCancel) {
   document.body.appendChild(el);
   el.showModal();
   el.addEventListener("close", function() {
-    onClose.apply(this);
+    let data = {};
+    let form = new FormData(this.querySelector("form"));
+    for (let [key, value] of form.entries()) {
+      data[key] = value;
+    }
+    onClose.call(this, this.returnValue, data);
     this.remove();
   });
   el.addEventListener("cancel", function() {
@@ -41,19 +46,7 @@ export function loginDialog(title, opts = {}) {
           ${h('submit', 'Cancel', _opts.buttonCSS)}
         </menu>
       </form>`,
-      function(event) {
-        let r = this.returnValue
-        if (r === "Cancel") {
-          resolve(null);
-        } else {
-          let data = {};
-          let form = new FormData(this.querySelector("form"));
-          for (let [key, value] of form.entries()) {
-            data[key] = value;
-          }
-          resolve(data);
-        }
-      },
+      (r, data) => (r === "Cancel") ? resolve(null) : resolve(data),
       () => resolve(null)
     );
   });
@@ -70,14 +63,7 @@ export function confirmDialog(title, opts = {}) {
           ${h('submit', 'No', _opts.buttonCSS)}
         </menu>
       </form>`,
-      function(event) {
-        let r = this.returnValue
-        if (r === "No") {
-          resolve(false);
-        } else {
-          resolve(true);
-        }
-      },
+      r => (r === "No") ? resolve(false) : resolve(true),
       () => resolve(null)
     );
   });
