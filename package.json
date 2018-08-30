@@ -4,6 +4,7 @@
   "description": "Lightweight HTML5 customizable modal prompts with no dependencies.",
   "main": "index.mjs",
   "scripts": {
+    "minify": "uglifyjs index.mjs -o index.min.mjs --compress --mangle --toplevel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/wmhilton/nanodialog/issues"
   },
-  "homepage": "https://github.com/wmhilton/nanodialog#readme"
+  "homepage": "https://github.com/wmhilton/nanodialog#readme",
+  "devDependencies": {
+    "uglify-es": "^3.3.9"
+  }
 }
